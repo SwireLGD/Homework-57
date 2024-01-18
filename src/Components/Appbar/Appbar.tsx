@@ -5,7 +5,7 @@ const Appbar = () => {
                 <span className="navbar-brand">Users</span>
             </div>
         </nav>
-    );
-};
+    )
+}
 
-export default Appbar;
+export default Appbar

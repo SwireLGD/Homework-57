@@ -1,30 +1,36 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
-import {User, UserMutation} from "../../types";
+import React, { useState, ChangeEvent, FormEvent } from 'react'
+import { User, UserMutation } from '../../types'
 
 interface Props {
-    onSubmit: (user: User) => void;
-};
+    onSubmit: (user: User) => void
+}
 
 const UserForm: React.FC<Props> = ({ onSubmit }) => {
-    const [user, setUser] = useState<UserMutation> ({
+    const [user, setUser] = useState<UserMutation>({
         name: '',
         email: '',
         active: false,
         role: '',
-    });
+    })
 
-    const changeUser = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>): void => {
-        const value = e.target.type === 'checkbox' ? (e.target as HTMLInputElement).checked : e.target.value;
-    
-        setUser(prevState => ({
+    const changeUser = (
+        e: ChangeEvent<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+        >,
+    ): void => {
+        const value =
+            e.target.type === 'checkbox'
+                ? (e.target as HTMLInputElement).checked
+                : e.target.value
+
+        setUser((prevState) => ({
             ...prevState,
-            [e.target.name]: value
-        }));
-    };
-    
+            [e.target.name]: value,
+        }))
+    }
 
-    const OnFormSubmit = ( e: FormEvent): void => {
-        e.preventDefault();
+    const OnFormSubmit = (e: FormEvent): void => {
+        e.preventDefault()
         onSubmit({
             id: Math.random().toString(),
             ...user,
@@ -35,7 +41,9 @@ const UserForm: React.FC<Props> = ({ onSubmit }) => {
         <form onSubmit={OnFormSubmit}>
             <h2 className="mb-5">Add new user</h2>
             <div className="form-group w-50">
-                <label htmlFor="name" className="fw-bold">Name</label>
+                <label htmlFor="name" className="fw-bold">
+                    Name
+                </label>
                 <input
                     type="text"
                     name="name"
@@ -46,7 +54,9 @@ const UserForm: React.FC<Props> = ({ onSubmit }) => {
                 />
             </div>
             <div className="form-group w-50">
-                <label htmlFor="email" className="fw-bold">Email</label>
+                <label htmlFor="email" className="fw-bold">
+                    Email
+                </label>
                 <input
                     type="email"
                     name="email"
@@ -57,7 +67,9 @@ const UserForm: React.FC<Props> = ({ onSubmit }) => {
                 />
             </div>
             <div className="form-group mt-3 ">
-                <label htmlFor="active" className="fw-bold">Activity</label>
+                <label htmlFor="active" className="fw-bold">
+                    Activity
+                </label>
                 <input
                     type="checkbox"
                     name="active"
@@ -82,9 +94,11 @@ const UserForm: React.FC<Props> = ({ onSubmit }) => {
                 </select>
             </div>
 
-            <button type="submit" className="btn btn-primary mt-4">Add</button>
+            <button type="submit" className="btn btn-primary mt-4">
+                Add
+            </button>
         </form>
-    );
-};
+    )
+}
 
-export default UserForm;
+export default UserForm
